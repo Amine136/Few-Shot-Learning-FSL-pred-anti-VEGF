@@ -1,0 +1,90 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required />
+        <input type="submit" value="Predict" />
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Classifier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-4 text-center text-gray-800">🧠 Few-Shot Image Classifier</h1>
+        <form id="upload-form" enctype="multipart/form-data">
+            <label class="flex flex-col items-center px-4 py-6 bg-blue-50 text-blue-600 rounded-lg shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-100 transition mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0l-4 4m4-4l4 4M17 8v8m0 0l-4-4m4 4l4-4"/>
+                </svg>
+                <span class="mt-2 text-base leading-normal">Upload an image</span>
+                <input type="file" name="file" id="file-input" class="hidden" accept="image/*" required>
+            </label>
+            <div class="mb-4">
+                <img id="preview" class="w-full rounded-md shadow-sm hidden" />
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
+                🔍 Predict
+            </button>
+        </form>
+        <div id="result" class="mt-4 text-center text-lg font-medium text-green-700 hidden"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        const fileInput = document.getElementById('file-input');
+        const preview = document.getElementById('preview');
+        const result = document.getElementById('result');
+
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.classList.remove('hidden');
+                result.classList.add('hidden');
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            result.textContent = "Processing...";
+            result.classList.remove('hidden');
+            result.classList.remove('text-green-700');
+            result.classList.add('text-gray-600');
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            if (data.prediction) {
+                result.textContent = `✅ Prediction: ${data.prediction}`;
+                result.classList.remove('text-gray-600');
+                result.classList.add('text-green-700');
+            } else {
+                result.textContent = "❌ Error occurred";
+                result.classList.remove('text-green-700');
+                result.classList.add('text-red-600');
+            }
+        });
+    </script>
+</body>
+</html>
