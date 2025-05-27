@@ -15,24 +15,7 @@ The app is built with **PyTorch** for the model and **Flask** for the web interf
 
 ---
 
-## 🗂️ Project Structure
 
-.
-├── app.py # Flask web server
-├── script.py # Core model logic and prediction
-├── templates/
-│ └── index.html # Frontend upload form
-├── uploads/ # Folder where uploaded images are stored
-├── protonet_encoder_best_lr00015.pth # Pre-trained encoder model
-├── support/ # Support set directory with class folders
-├── requirements.txt # Python dependencies
-└── README.md
-
-yaml
-Copier
-Modifier
-
----
 
 ## 📦 Requirements
 
