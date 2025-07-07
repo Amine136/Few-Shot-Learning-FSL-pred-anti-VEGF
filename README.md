@@ -26,12 +26,14 @@ pip install -r requirements.txt
 ```
 
 🚀 How to Run
+
 1. Clone the repository
-bash
-Copier
-Modifier
+
+```bash
 git clone https://github.com/Amine136/Few-Shot-Learning-FSL-pred-anti-VEGF.git
 cd few-shot-flask-app
+```
+
 2. Prepare the support set
 Your support/ folder must contain subfolders for each class (e.g., class_0, class_1) with example images inside.
 
