@@ -34,12 +34,10 @@ git clone https://github.com/Amine136/Few-Shot-Learning-FSL-pred-anti-VEGF.git
 cd few-shot-flask-app
 ```
 
-2. Prepare the support set
-Your support/ folder must contain subfolders for each class (e.g., class_0, class_1) with example images inside.
+The support/ folder contain subfolders for each class (e.g., class_0, class_1) with example images inside.
 
-bash
-Copier
-Modifier
+```bash
+
 support/
 ├── class_0/   # Good Responders
 │   ├── img1.jpg
@@ -47,20 +45,16 @@ support/
 └── class_1/   # Bad Responders
     ├── img2.jpg
     └── ...
-3. Run the Flask app
-bash
-Copier
-Modifier
+```
+2. Run the Flask app
+```bash   
 python app.py
+```
 The app will start on http://127.0.0.1:5000/.
 
 🌐 Web Interface
 Open your browser and go to:
 
-cpp
-Copier
-Modifier
-http://127.0.0.1:5000/
 Upload an image and get a prediction:
 ✅ "Good responders"
 ❌ "Bad responders"
