@@ -8,8 +8,8 @@ from PIL import Image
 
 
 #must be updated    
-encoder_path = r'C:\Users\HP\Desktop\few learning/protonet_encoder_best_lr00015.pth'
-support_set_path = r'C:\Users\HP\Desktop\few learning/support'  # must have class folders inside
+encoder_path = r'protonet_encoder_best_lr00015.pth'
+support_set_path = r'support'  # must have class folders inside
 #must be updated
 
 
